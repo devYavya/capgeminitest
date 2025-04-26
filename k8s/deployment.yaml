@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capgtest
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: capgtest
+  template:
+    metadata:
+      labels:
+        app: capgtest
+    spec:
+      containers:
+        - name: capgtest
+          image: capgtest:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RAILS_ENV
+              value: "production"
+            - name: RACK_ENV
+              value: "production"
